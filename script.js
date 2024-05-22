@@ -7973,6 +7973,20 @@ function incrementMoney(amount) {
     }
     drawMoney(game.Money);
 }
+
+// defaults to adding 1 initiative to the inbox
+function cheat(storeId = "100", number = 1) {
+    itemSrc = game.StoreItems[storeId]
+    for (let i = 0; i < number; i++) {
+      itemClone = Object.assign({},itemSrc);
+      itemClone.id = nextId();
+      itemClone.price = 1;
+      index = "i" + itemClone.id;
+      game.Items[index] = itemClone;
+      drawInboxItem(index, itemClone);
+    }
+  }
+
 function visitPrivacy() {
     $id("startscreen").classList.add("hidden");
     $id("privacy").classList.remove("hidden");
